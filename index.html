@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <style>
+        section{
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            transition: .3s;
+        }
+        img:hover{filter: brightness(80%);}
+        .material-icons{
+            font-size: 70px;
+            color: white;
+        }
+        div{
+            position: relative;
+            width: 70px;
+        }
+        #previous{
+            top: -380px}
+        #next{
+            top: -450px; left: 530px}
+        #link {
+            top: -510px;
+            left: 20px;
+            font-size: 24px;
+        }
+        #link a{ border: 1px solid white;}
+        .material-icons:hover{transition: .6s; color: aqua;}
+        .opis{
+            background-color: rgba(83, 151, 132, 0.4);
+            width: 100%; 
+            height: 100px;
+            top: -124px;
+            color: white;
+            }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        p a {
+            text-decoration: underline;
+        }
+        p a:hover{transition: .6s; color: black;}
+        #header, #desc {
+        padding-left: 15px;
+        }
+        #header {
+        padding-top: 5px;
+        }
+    </style>
+</head>
+<body onload="timerId = window.setTimeout(carousel, 2000)">
+<section onmouseover="stop()" onmouseout="timerId = setTimeout(carousel, 3000);">
+    <a href="javascript:addLink()">
+        <img id="pic" src="images/img1b.jpg" width="600px" height="400px">
+        <div class="opis">
+            <h2 id="header">Заголовок 1</h2>
+            <p id="desc">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты <a href="#">больше>></a></p>
+        </div>
+    </a>
+    <div id="link">
+        <a id="li" href="https://www.onliner.by/">onliner.by</a>
+    </div>
+    <div id="previous">
+        <a href="javascript:bc()"><span class="material-icons">navigate_before</span></a>
+    </div>
+    <div id="next"><a href="javascript:fr()"><span class="material-icons">navigate_next</span></a>
+    </div>
+</section>
+    <script>
+        id = 1, max = 6;
+        let links = new Array(max);
+        links[1] = 'https://www.onliner.by';
+        links[2] = 'https://afisha.tut.by';
+        links[3] = 'https://google.by';
+        links[4] = 'https://yandex.by';
+        links[5] = 'https://vk.com';
+        links[6] = 'https://mail.ru';
+
+        let descriptions = new Array(max);
+        descriptions[1] = 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты ';
+        descriptions[2] = 'Вдали от всех живут они в буквенных домах на берегу ';
+        descriptions[3] = 'Семантика большого языкового океана ';
+        descriptions[4] = 'Маленький ручеек Даль журчит по всей стране ';
+        descriptions[5] = 'и обеспечивает ее всеми необходимыми правилами ';
+        descriptions[6] = 'Эта парадигматическая страна, в которой жаренные члены предложения залетают прямо в рот ';
+
+        function addLink(){
+            window.location.href = links[id];
+        }
+
+        function carousel(){
+            if(++id > max) id = 1;
+            document.getElementById("pic").src = `images/img${id}b.jpg`;
+            document.getElementById("header").innerHTML = `Заголовок ${id}`;
+            document.getElementById("desc").innerHTML = `${descriptions[id]}<a href="#">больше>></a>`;
+
+            pos = links[id].indexOf('/', 0);
+            length = links[id].length;
+            document.getElementById("li").href = links[id];
+            document.getElementById("li").innerHTML = `${links[id].substring(pos + 2, length)}`;
+
+            timerId = setTimeout(carousel, 3000);
+        }
+
+        function stop(){
+            clearTimeout(timerId);
+        }
+
+        function fr(){
+            if(id >= max) id = 1; else id++;
+                document.getElementById("pic").src = `images/img${id}b.jpg`;
+                document.getElementById("header").innerHTML = `Заголовок ${id}`;
+                document.getElementById("desc").innerHTML = `${descriptions[id]}<a href="#">больше>></a>`;
+
+                pos = links[id].indexOf('/', 0);
+            length = links[id].length;
+            document.getElementById("li").href = links[id];
+            document.getElementById("li").innerHTML = `${links[id].substring(pos + 2, length)}`;
+        }
+
+        function bc(){
+            if(id > 1) id--; else id = max;
+            document.getElementById("pic").src = `images/img${id}b.jpg`;
+            document.getElementById("header").innerHTML = `Заголовок ${id}`;
+            document.getElementById("desc").innerHTML = `${descriptions[id]}<a href="#">больше>></a>`;
+
+            pos = links[id].indexOf('/', 0);
+            length = links[id].length;
+            document.getElementById("li").href = links[id];
+            document.getElementById("li").innerHTML = `${links[id].substring(pos + 2, length)}`;
+        }
+    </script>
+</body>
+</html>
