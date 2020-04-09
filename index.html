@@ -56,15 +56,16 @@
         }
     </style>
 </head>
-<body onload="timerId = window.setTimeout(carousel, 2000)">
+<body onload="timerId = window.setTimeout(carousel, 3000)">
 <section onmouseover="stop()" onmouseout="timerId = setTimeout(carousel, 3000);">
     <a href="javascript:addLink()">
         <img id="pic" src="images/img1b.jpg" width="600px" height="400px">
         <div class="opis">
-            <h2 id="header">Заголовок 1</h2>
-            <p id="desc">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты <a href="#">больше>></a></p>
-        </div>
     </a>
+    <div class="opis">
+        <h2 id="header">Заголовок 1</h2>
+        <p id="desc">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты <a href="#">больше>></a></p>
+    </div>
     <div id="link">
         <a id="li" href="https://www.onliner.by/">onliner.by</a>
     </div>
